@@ -1,0 +1,11 @@
+[package]
+name = "cheatsheet"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+cursive = "0.21"
+rand = "*"
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+terminal_size = "0.4"
