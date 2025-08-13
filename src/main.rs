@@ -5,6 +5,7 @@
 
 use cursive::Vec2;
 use cursive::View;
+use cursive::event::Event;
 use cursive::style::{BorderStyle, Effect, Palette, Style};
 use cursive::utils::markup::StyledString;
 use cursive::view::Margins;
@@ -14,11 +15,11 @@ use std::fs;
 use std::path::Path;
 use std::process::ExitCode;
 use terminal_size::{Height, Width, terminal_size};
-use cursive::event::{Event};
 
 #[derive(Deserialize, Debug, Serialize)]
 struct CSInput {
     input: String,
+    #[serde(default)]
     description: String,
 }
 
@@ -128,7 +129,10 @@ fn main() -> ExitCode {
 
         let mut it2 = env.inputs.iter().peekable();
         while let Some(input) = it2.next() {
+            let mut row = LinearLayout::horizontal();
+            let mut empty_allowed = true;
             let column_height = calculate_column_height(&mut column);
+
             if column_height == max_height - 1 {
                 main_layout.add_child(PaddedView::new(
                     Margins::lr(1, 1),
@@ -137,16 +141,20 @@ fn main() -> ExitCode {
                 column = LinearLayout::vertical();
                 column.add_child(TextView::new("   "));
                 column.add_child(TextView::new("   "));
+                empty_allowed = false;
             }
 
-            let mut row = LinearLayout::horizontal();
-            let mut combo = StyledString::new();
-            combo.append_styled(
-                format!("{:16}", input.input.replace("**", &env.prefix)),
-                Style::from(Effect::Dim),
-            );
-            row.add_child(TextView::new(combo));
-            row.add_child(TextView::new(&input.description));
+            if input.input == "---" && empty_allowed {
+                row.add_child(TextView::new("   "));
+            } else {
+                let mut combo = StyledString::new();
+                combo.append_styled(
+                    format!("{:16}", input.input.replace("**", &env.prefix)),
+                    Style::from(Effect::Dim),
+                );
+                row.add_child(TextView::new(combo));
+                row.add_child(TextView::new(&input.description));
+            }
             column.add_child(row);
         }
 

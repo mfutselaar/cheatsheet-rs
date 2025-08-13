@@ -2,7 +2,10 @@
 
 Cheatsheet-RS is a terminal-based application built with Rust and the cursive
 library to display a customizable cheatsheet for various environments and their
-associated commands or inputs. 
+associated commands or inputs.
+
+This was and is primarily used to get some knowledge about Rust.
+
 
 ## Features
 - **Dynamic Layout**: Automatically organizes commands into columns that fit your terminal size.
@@ -67,12 +70,18 @@ This will open a 50% x 50% terminal window with the cheatsheet in the center of 
                 "description": "Open terminal"
             },
             {
+                "input": "---"
+            },
+            {
                 "input": "** + h",
                 "description": "Toggle horizontal split"
             },
             {
                 "input": "** + v",
                 "description": "Toggle vertical split"
+            },
+            {
+                "input": "---"
             },
             {
                 "input": "** + q",
@@ -131,6 +140,8 @@ This will open a 50% x 50% terminal window with the cheatsheet in the center of 
   - `environment`: Name of the environment (e.g., "Git").
   - `prefix`: Optional command prefix (e.g., "git "). Replaced in `input` where `**` appears.
   - `inputs`: Array of input objects with `input` (command) and `description` (explanation).
+
+_Note: You can define the `input` as `---` to add an empty line as a separator._
 
 ## License
 This project is licensed under the GNU General Public License v3.0 with an additional restriction:
