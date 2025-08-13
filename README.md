@@ -4,7 +4,7 @@ Cheatsheet-RS is a terminal-based application built with Rust and the cursive
 library to display a customizable cheatsheet for various environments and their
 associated commands or inputs.
 
-This was and is primarily used to get some knowledge about Rust.
+This project was and is primarily used to get some knowledge about Rust.
 
 
 ## Features
