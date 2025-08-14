@@ -41,8 +41,14 @@ const CELL_WIDTH: u16 = 48;
 fn read_cheatsheet() -> Result<String, std::io::Error> {
     let locations = [
         "./cheatsheet.json".to_string(),
+        std::env::var("XDG_CONFIG_HOME")
+            .map(|home| format!("{}/cheatsheet-rs/cheatsheet.json", home))
+            .unwrap_or_default(),
         std::env::var("HOME")
-            .map(|home| format!("{}/.local/share/cheatsheet-rs/cheatsheet.json", home))
+            .map(|home| format!("{}/.config/cheatsheet-rs/cheatsheet.json", home))
+            .unwrap_or_default(),
+        std::env::var("HOME")
+            .map(|home| format!("{}/.cheatsheet-rs/cheatsheet.json", home))
             .unwrap_or_default(),
         std::env::var("HOME")
             .map(|home| format!("{}/cheatsheet.json", home))

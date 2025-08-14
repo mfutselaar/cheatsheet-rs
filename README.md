@@ -33,8 +33,12 @@ This project was and is primarily used to get some knowledge about Rust.
 1. Create a `cheatsheet.json` file in one of the following locations:
   
   - Current working directory (`./cheatsheet.json`)
-  - `$HOME/.local/share/cheatsheet-rs/cheatsheet.json`
+  - `$XDG_CONFIG_HOME/cheatsheet-rs/cheatsheet.json`
+  - `$HOME/.config/cheatsheet-rs/cheatsheet.json`
+  - `$HOME/.cheatsheet-rs/cheatsheet.json`
   - `$HOME/cheatsheet.json`
+
+(The application looks in these locations in the displayed order)
 
 2. Run the application:
    ```bash
